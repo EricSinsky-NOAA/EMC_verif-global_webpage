@@ -372,16 +372,13 @@ validtimes.push({
 });
 validtimes.push({
         displayName: "0006 UTC",
-        name: "<?php echo $Init06_name; ?>",                                                                                                                                                                                             
-});
+        name: "<?php echo $Init06_name; ?>",                                                                                                                                                  });
 validtimes.push({
         displayName: "0012 UTC",
-        name: "<?php echo $Init12_name; ?>",                                                                                                                                                                                             
-});
+        name: "<?php echo $Init12_name; ?>",                                                                                                                                                  });
 validtimes.push({
         displayName: "0018 UTC",
-        name: "<?php echo $Init18_name; ?>",                                                                                                                                                                                             
-});
+        name: "<?php echo $Init18_name; ?>",                                                                                                                                                  });
 
 variables.push({
         displayName: "Temperature",
