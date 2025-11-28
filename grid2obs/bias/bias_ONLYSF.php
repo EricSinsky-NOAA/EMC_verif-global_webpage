@@ -351,6 +351,7 @@ validtimes.push({
         displayName: "0018 UTC",
         name: "<?php echo $Init18_name; ?>",                                                                                                                                                  });
 
+
 variables.push({
         displayName: "2m Temperature",
         name: "<?php echo $Temp2m_name; ?>",
