@@ -1,0 +1,33 @@
+<?php include '../../globalvars.php';
+      $stat_title = 'Satellite: RMSE';
+      $GHRSST_NCEI_AVHRR_ANL_url = $image_location.'/rmse_TTT_VVV_SSS_DDD_ghrsst_ncei_avhrr_anl.png';
+      $GHRSST_OSPO_GEOPOLAR_ANL_url = $image_location.'/rmse_TTT_VVV_SSS_DDD_ghrsst_ospo_geopolar_anl.png';
+      $Global_name = 'G003';
+      $GlobalSeaIce_name = 'G003SEA_ICE';
+      $GlobalSeaIceFree_name = 'G003SEA_ICE_FREE';
+      $NHem_name = 'G003NH';
+      $SHem_name = 'G003SH';
+      $Polar_name = 'G003POLAR';
+      $PolarSeaIce_name = 'G003POLAR_SEA_ICE';
+      $PolarSeaIceFree_name = 'G003POLAR_SEA_ICE_FREE';
+      $Arctic_name = 'G003ARCTIC';
+      $SST_name = 'TMP_Z0_mean_Z0';
+      $IceCon_name = 'ICEC_Z0_mean_Z0';
+      $Valid00_name = 'valid00Z';
+      $Fhr00_name = 'fhr00';
+      $Fhr12_name = 'fhr12';
+      $Fhr24_name = 'fhr24';
+      $Fhr36_name = 'fhr36';
+      $Fhr48_name = 'fhr48';
+      $Fhr60_name = 'fhr60';
+      $Fhr72_name = 'fhr72';
+      $Fhr84_name = 'fhr84';
+      $Fhr96_name = 'fhr96';
+      $Fhr108_name = 'fhr108';
+      $Fhr120_name = 'fhr120';
+      $Fhr132_name = 'fhr132';
+      $Fhr144_name = 'fhr144';
+      $Fhr156_name = 'fhr156';
+      $Fhr156_name = 'fhr168';
+      $LeadMean_name = 'fhrmean';?>
+
