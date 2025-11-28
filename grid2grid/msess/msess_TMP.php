@@ -220,6 +220,18 @@ validtimes.push({
         displayName: "0000 UTC",
         name: "<?php echo $Valid00_name; ?>",
 });
+validtimes.push({
+        displayName: "0600 UTC",
+        name: "<?php echo $Valid06_name; ?>",
+});
+validtimes.push({
+        displayName: "1200 UTC",
+        name: "<?php echo $Valid12_name; ?>",
+});
+validtimes.push({
+        displayName: "1800 UTC",
+        name: "<?php echo $Valid18_name; ?>",
+});
 
 
 variables.push({
