@@ -30,15 +30,28 @@ function populateMenu(mode){
 		}
 	}
         else if(mode == 'threshold'){
+
                 var element = document.getElementById("threshold");
-                for(i = element.options.length - 1 ; i >= 0 ; i--){element.remove(i);}
-                
+
+                // Clear existing options
+                for(var i = element.options.length - 1; i >= 0; i--){
+                    element.remove(i);
+                }
+
+
+                // Get thresholds for the currently selected variable
+                var thresholds = thresholdsByVariable[imageObj.variable] || [];
+
                 for(i=0; i<thresholds.length; i++){
                         var option = document.createElement("option");
                         option.text = thresholds[i].displayName;
                         option.value = thresholds[i].name;
                         element.add(option);
                 }
+
+                // Set the selected threshold to match imageObj
+                var selectedIndex = thresholds.findIndex(t => t.name === imageObj.threshold);
+                element.selectedIndex = selectedIndex >= 0 ? selectedIndex : 0;
         }
         else if(mode == 'level'){
                 var element = document.getElementById("level");
@@ -139,10 +152,12 @@ function showImage(){
 	//document.getElementById("valid").selectedIndex = frames.indexOf(parseInt(imageObj.frame));//(parseInt(imageObj.frame) / incrementFrame);
 	document.getElementById("variable").selectedIndex = searchByName(imageObj.variable,variables);
 	document.getElementById("domain").selectedIndex = searchByName(imageObj.domain,domains);
-        document.getElementById("threshold").selectedIndex = searchByName(imageObj.threshold,thresholds);
         document.getElementById("level").selectedIndex = searchByName(imageObj.level,levels);
         document.getElementById("season").selectedIndex = searchByName(imageObj.season,seasons);
         document.getElementById("validtime").selectedIndex = searchByName(imageObj.validtime,validtimes);
+
+        var currentThresholds = thresholdsByVariable[imageObj.variable] || [];
+        document.getElementById("threshold").selectedIndex = searchByName(imageObj.threshold, currentThresholds);
 	
 	//Update URL in address bar
 	generate_url();
@@ -273,6 +288,11 @@ function changeValidtime(id){
 //Change the variable from dropdown menu
 function changeVariable(id){
 	imageObj.variable = id;
+
+
+        // Update threshold dropdown for this variable
+        updateThresholdDropdown(id);
+
 	preload(imageObj);
 	showImage();
 	document.getElementById("variable").blur();
@@ -282,6 +302,41 @@ function changeVariable(id){
 function changeMaptype(id){
 	var newUrl = maptypes[searchByName(id,maptypes)].url;
 	window.open(newUrl,"_self");
+}
+
+
+function updateThresholdDropdown(variableId) {
+
+    var element = document.getElementById("threshold");
+
+    // Clear current options
+    for (var i = element.options.length - 1; i >= 0; i--) {
+        element.remove(i);
+    }
+
+    // Get thresholds for this variable
+    var thresholds = thresholdsByVariable[variableId] || [];
+
+    // Add new options
+    for (var i = 0; i < thresholds.length; i++) {
+        var option = document.createElement("option");
+        option.text = thresholds[i].displayName;
+        option.value = thresholds[i].name;
+        element.add(option);
+    }
+
+    // Set default threshold
+    if (thresholds.length > 0) {
+        // If current threshold is valid for this variable, keep it; otherwise use first option
+        var idx = thresholds.findIndex(t => t.name === imageObj.threshold);
+        if (idx >= 0) {
+            element.selectedIndex = idx;
+        } else {
+            element.selectedIndex = 0;
+            imageObj.threshold = thresholds[0].name;
+        }
+    }
+
 }
 
 /* ============================================================================================================= */

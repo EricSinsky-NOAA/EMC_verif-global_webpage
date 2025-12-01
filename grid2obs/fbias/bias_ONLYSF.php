@@ -130,11 +130,53 @@ var url = "<?php echo $ONLYSF_url; ?>";
 
 var variables = [];
 var domains = [];
-var thresholds = [];
 var levels = [];
 var seasons = [];
 var maptypes = [];
 var validtimes = [];
+
+<?php
+$variablesWithThresholds = [
+    $Temp2m_name => [
+        ['displayName' => 'TBD', 'name' => 'TBD']
+    ],
+    $RelHum2m_name => [
+        ['displayName' => 'TBD', 'name' => 'TBD']
+    ],
+    $Dewpt2m_name => [
+        ['displayName' => 'TBD', 'name' => 'TBD']
+    ],
+    $Wind10m_name => [
+        ['displayName' => 'TBD', 'name' => 'TBD']
+    ],
+    $TotCloud_name => [
+        ['displayName' => 'TBD', 'name' => 'TBD']
+    ],
+    $SeaLevPres_name => [
+        ['displayName' => 'TBD', 'name' => 'TBD']
+    ],
+    $VisSfc_name => [
+        ['displayName' => '3000 m', 'name' => $Thresh3_name],
+        ['displayName' => '5000 m', 'name' => $Thresh5_name],
+        ['displayName' => '8000 m', 'name' => $Thresh8_name],
+        ['displayName' => 'All', 'name' => $ThreshAll_name]
+    ],
+    $CldCeiling_name => [
+        ['displayName' => 'TBD', 'name' => 'TBD']
+    ],
+    $CAPESfc_name => [
+        ['displayName' => 'TBD', 'name' => 'TBD']
+    ],
+    $HgtPBL_name => [
+        ['displayName' => 'TBD', 'name' => 'TBD']
+    ],
+    $GustSfc_name => [
+        ['displayName' => 'TBD', 'name' => 'TBD']
+    ],
+];
+?>
+
+var thresholdsByVariable = <?php echo json_encode($variablesWithThresholds); ?>;
 
 
 domains.push({
@@ -212,20 +254,6 @@ domains.push({
 domains.push({
         displayName: "S. Alaska",
         name: "<?php echo $SAK_name; ?>",
-});
-
-
-thresholds.push({
-        displayName: "3000 m",
-        name: "<?php echo $Thresh3_name; ?>",
-});
-thresholds.push({
-        displayName: "5000 m",
-        name: "<?php echo $Thresh5_name; ?>",
-});
-thresholds.push({
-        displayName: "8000 m",
-        name: "<?php echo $Thresh8_name; ?>",
 });
 
 
@@ -486,7 +514,7 @@ function initialize(){
         
         //Set image object based on default variables
         imageObj = {
-                variable: "<?php echo $Temp2m_name; ?>",
+                variable: "<?php echo $VisSfc_name; ?>",
                 season: "<?php echo $Fhr00_name; ?>",
                 domain: "<?php echo $East_name; ?>",
                 threshold: "<?php echo $Thresh3_name; ?>",
@@ -499,14 +527,6 @@ function initialize(){
         if(passed_domain!=""){
                 if(searchByName(passed_domain,domains)>=0){
                         imageObj.domain = passed_domain;
-                }
-        }
-
-        //Change threshold based on passed argument, if any
-        var passed_threshold = "";
-        if(passed_threshold!=""){
-                if(searchByName(passed_threshold,thresholds)>=0){
-                        imageObj.threshold = passed_threshold;
                 }
         }
 

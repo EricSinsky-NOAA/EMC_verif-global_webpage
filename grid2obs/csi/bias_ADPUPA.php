@@ -135,6 +135,28 @@ var seasons = [];
 var maptypes = [];
 var validtimes = [];
 
+<?php
+$variablesWithThresholds = [
+    $Temp_name => [
+        ['displayName' => 'TBD', 'name' => 'TBD']
+    ],
+    $RelHum_name => [
+        ['displayName' => 'TBD', 'name' => 'TBD']
+    ],
+    $VectWind_name => [
+        ['displayName' => 'TBD', 'name' => 'TBD']
+    ],
+    $SpefHum_name => [
+        ['displayName' => 'TBD', 'name' => 'TBD']
+    ],
+    $GeoHeight_name => [
+        ['displayName' => 'TBD', 'name' => 'TBD']
+    ]
+];
+?>
+
+var thresholdsByVariable = <?php echo json_encode($variablesWithThresholds); ?>;
+
 
 domains.push({
         displayName: "Global",
@@ -478,6 +500,7 @@ function initialize(){
                 variable: "<?php echo $Temp_name; ?>",
                 season: "<?php echo $Fhr00_name; ?>",
                 domain: "<?php echo $NHem_name; ?>",
+                threshold: "<?php echo 'TBD'; ?>",
                 level: "<?php echo $P850_name; ?>",
                 validtime: "<?php echo $Init00_name; ?>",
         };
@@ -508,6 +531,7 @@ function initialize(){
         //Populate forecast hour and dprog/dt arrays for this run and frame
         populateMenu('variable');
         populateMenu('domain');
+        populateMenu('threshold');
         populateMenu('level');
         populateMenu('season');
         populateMenu('validtime');

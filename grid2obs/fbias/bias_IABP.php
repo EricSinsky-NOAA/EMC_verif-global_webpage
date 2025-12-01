@@ -135,6 +135,22 @@ var seasons = [];
 var maptypes = [];
 var validtimes = [];
 
+<?php
+$variablesWithThresholds = [
+    $Temp2m_name => [
+        ['displayName' => 'TBD', 'name' => 'TBD']
+    ],
+    $TempSfc_name => [
+        ['displayName' => 'TBD', 'name' => 'TBD']
+    ],
+    $PresSfc_name => [
+        ['displayName' => 'TBD', 'name' => 'TBD']
+    ]
+];
+?>
+
+var thresholdsByVariable = <?php echo json_encode($variablesWithThresholds); ?>;
+
 
 domains.push({
         displayName: "Arctic",
@@ -370,6 +386,7 @@ function initialize(){
                 variable: "<?php echo $Temp2m_name; ?>",
                 season: "<?php echo $Fhr00_name; ?>",
                 domain: "<?php echo $G223Arctic_name; ?>",
+                threshold: "<?php echo 'TBD'; ?>",
                 level: "<?php echo $Sfc_name; ?>",
                 validtime: "<?php echo $Init00_name; ?>",
         };
@@ -400,6 +417,7 @@ function initialize(){
         //Populate forecast hour and dprog/dt arrays for this run and frame
         populateMenu('variable');
         populateMenu('domain');
+        populateMenu('threshold');
         populateMenu('level');
         populateMenu('season');
         populateMenu('validtime');
